@@ -21,7 +21,7 @@ const api = axios.create({
 router.get('/',  (async (req,res) =>{
     const { q } = req.query || ':query';
     try {
-        const { data } = await api.get('/sites/MLA/search', { params: {  q: q,  limit: 4  } });
+        const { data } = await api.get('/sites/MLA/search', { params: {  q: q} });
         const {available_filters, results} = data
 
         const customItems = {
@@ -51,12 +51,16 @@ router.get('/',  (async (req,res) =>{
 router.get('/:id', (async (req, res) => {
 
     const {id} = req.params;
-    const urlSingleItem = api.get(`/items/${id}`);
-    const urlDescription =  api.get(`/items/${id}/description`);
+    const urlSingleItem = await api.get(`/items/${id}`);
+    const urlDescription = api.get(`/items/${id}/description`);
+    const category_id = urlSingleItem.data.category_id;
+    const categories = await api.get(`/categories/${category_id}`);
 
     axios.all([urlSingleItem, urlDescription]).then(
     axios.spread((...responses) => {
+
       const {data } = responses[0];
+
       const { plain_text} = responses[1].data;
 
       const customItem =  Object.assign({
@@ -69,6 +73,7 @@ router.get('/:id', (async (req, res) => {
                 amount: data.price,
                 decimals: 2
             },
+            categories: categories.data.path_from_root,
             picture: data.thumbnail,
             condition: data.condition,
             free_shipping: data.shipping?.free_shipping,
