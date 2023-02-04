@@ -1,0 +1,15 @@
+import React from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+
+import { Container } from './styles';
+
+export default function Navigation({ categories }) {
+   const categoryLink = categories.map((category, index) => (
+      <span key={category}>
+         <a href="/">{category.name}</a>
+         {index === categories.length - 1 ? '' : <MdKeyboardArrowRight />}
+      </span>
+   ));
+
+   return <Container>{categoryLink}</Container>;
+}
