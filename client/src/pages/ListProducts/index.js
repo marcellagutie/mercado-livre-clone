@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import shipping from '../../assets/ic_shipping@2x.png.png';
-import ErrorMessage from '../../components/ErrorMessage';
+import ErrorAlert from '../../components/ErrorAlert';
 import Loading from '../../components/Loading';
-import { MainContainer } from '../../components/MainContainer/styles';
+import { Wrapper } from '../../styles/wrapper';
 import Navigation from '../../components/Navigation';
 import api from '../../services/api';
 
 import { Container, Product, Description, Pagination } from './styles';
 
-export default function ResultsSearch() {
+export default function ListProducts() {
    const [products, setProducts] = useState([]);
    const [isloading, setIsLoading] = useState(true);
    const [failure, setFailure] = useState({ status: false, message: '' });
    const [page, setPage] = useState(0);
-
    const URL = new URLSearchParams(useLocation().search).get('search');
+   const ITEMS_PER_PAGE = 4;
 
    useEffect(() => {
       setIsLoading(true);
@@ -27,8 +27,7 @@ export default function ResultsSearch() {
          try {
             const resp = await api.get(`/items?q=${URL}`);
             const [...searchs] = resp.data.message.items;
-            console.log(resp)
-            const result =  searchs.slice(page * 4, page * 4 + 4);
+            const result =  searchs.slice(page * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE + ITEMS_PER_PAGE);
             setProducts(result);
          } catch (err) {
             setFailure({ status: true, message: err.message });
@@ -40,15 +39,11 @@ export default function ResultsSearch() {
       loadProduct();
    }, [URL, page]);
 
-   function showError() {
-      return <ErrorMessage message={failure.message} />;
-   }
+   const showError = () => <ErrorAlert message={failure.message} />;
 
-   function showLoading() {
-      return <Loading />;
-   }
+   const showLoading = () => <Loading />;
 
-   function showSearch(product, index) {
+   const showSearch = (product, index) => {
       return (
          <>
             <Product>
@@ -58,11 +53,10 @@ export default function ResultsSearch() {
                      <span>
                         $ {product.price.amount.toLocaleString(product.price.currency)}
                      </span>
-                     {console.log(product, 'produto')}
                      {product.free_shiping ? (
                         <img src={shipping} alt={product.id} />
                      ) : (
-                        'BATATA'
+                        ''
                      )}
                   </div>
                   <Description>{product.title}</Description>
@@ -76,46 +70,47 @@ export default function ResultsSearch() {
    }
 
    return (
-      <MainContainer>
-         <Navigation categories={['Busca']} />
-         <Container>
-            {failure.status
-               ? showError()
-               : isloading
-               ? showLoading()
-               : products.map((product, index) => (
-                    <Link key={product.id} to={`/items/${product.id}`}>
-                       {showSearch(product, index)}
-                    </Link>
-                 ))}
-            {!failure.status ? (
-               <Pagination>
-                  <button
-                     type="button"
-                     onClick={() => {
-                        window.scrollTo(0, 0);
-                        setPage(page - 1);
-                     }}
-                     disabled={page <= 0 || isloading}
-                  >
-                     Anterior
-                  </button>
-                  <span>{page + 1}</span>
-                  <button
-                     type="button"
-                     onClick={() => {
-                        window.scrollTo(0, 0);
-                        setPage(page + 1);
-                     }}
-                     disabled={isloading}
-                  >
-                     Próximo
-                  </button>
-               </Pagination>
-            ) : (
-               ``
-            )}
-         </Container>
-      </MainContainer>
-   );
+      <Wrapper>
+        <Navigation categories={["Busca"]} />
+        <Container>
+          {failure.status ? (
+            showError()
+          ) : isloading ? (
+            showLoading()
+          ) : (
+            products.map((product, index) => (
+              <Link key={product.id} to={`/items/${product.id}`}>
+                {showSearch(product, index)}
+              </Link>
+            ))
+          )}
+          {!failure.status && (
+            <Pagination>
+              <button
+                type="button"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setPage(page - 1);
+                }}
+                disabled={page <= 0 || isloading}
+              >
+                Anterior
+              </button>
+              <span>{page + 1}</span>
+              <button
+                type="button"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setPage(page + 1);
+                }}
+                disabled={isloading}
+              >
+                Próximo
+              </button>
+            </Pagination>
+          )}
+        </Container>
+      </Wrapper>
+    );
+
 }

@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 export default function Navigation({ categories }) {
    const categoryLink = categories.map((category, index) => (
-      <span key={category}>
+      <span key={`category-${index}`}>
          <a href="/">{category.name}</a>
          {index === categories.length - 1 ? '' : <MdKeyboardArrowRight />}
       </span>

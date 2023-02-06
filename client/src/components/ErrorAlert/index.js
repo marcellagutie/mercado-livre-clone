@@ -3,7 +3,7 @@ import { MdErrorOutline } from 'react-icons/md';
 
 import Container from './styles';
 
-export default function ErrorMessage({ message }) {
+export default function ErrorAlert({ message }) {
    return (
       <Container>
          <MdErrorOutline size={80} />

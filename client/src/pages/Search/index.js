@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { MainContainer } from '../../components/MainContainer/styles';
+import { Wrapper } from '../../styles/wrapper';
 import Navigation from '../../components/Navigation';
 
 export default function Search() {
    return (
-      <MainContainer>
+      <Wrapper>
          <Navigation categories={['Home']} />
-      </MainContainer>
+      </Wrapper>
    );
 }

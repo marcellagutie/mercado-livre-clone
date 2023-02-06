@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route, } from 'react-router-dom';
 
-import ErrorMessage from './components/ErrorMessage';
-import ProductDetail from './pages/ProductDetail';
-import ResultsSearch from './pages/ResultsSearch';
+import ErrorAlert from './components/ErrorAlert';
+import DetailProduct from './pages/DetailProduct';
+import ListProducts from './pages/ListProducts';
 import Search from './pages/Search';
 
 export default function Router() {
@@ -11,11 +11,11 @@ export default function Router() {
    return (
       <Routes>
          <Route path="/" exact element={<Search />}/>
-         <Route path={`items`}  element={<ResultsSearch />} />
-         <Route path="/items/:id" element={<ProductDetail/>} />
+         <Route path={`items`}  element={<ListProducts />} />
+         <Route path="/items/:id" element={<DetailProduct/>} />
          <Route
             path="*"
-            component={() => <ErrorMessage message="Está página não existe" />}
+            component={() => <ErrorAlert message="Está página não existe" />}
          />
       </Routes>
    );
