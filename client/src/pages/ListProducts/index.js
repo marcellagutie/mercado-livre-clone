@@ -15,6 +15,7 @@ export default function ListProducts() {
    const [isloading, setIsLoading] = useState(true);
    const [failure, setFailure] = useState({ status: false, message: '' });
    const [page, setPage] = useState(0);
+   const [numItems, setNumItem] = useState(0);
    const URL = new URLSearchParams(window.location.search).get('search');
    const ITEMS_PER_PAGE = 4;
 
@@ -28,6 +29,7 @@ export default function ListProducts() {
             const resp = await api.get(`/items?q=${URL}`);
             const [...searchs] = resp.data.message.items;
             const result =  searchs.slice(page * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE + ITEMS_PER_PAGE);
+            setNumItem(resp.data.message.items.length)
             setProducts(result);
          } catch (err) {
             setFailure({ status: true, message: err.message });
@@ -96,7 +98,7 @@ export default function ListProducts() {
               >
                 Anterior
               </button>
-              <span>{page + 1}</span>
+              <span>{page + 1} ... { Math.round(numItems / ITEMS_PER_PAGE)} </span>
               <button
                 type="button"
                 onClick={() => {

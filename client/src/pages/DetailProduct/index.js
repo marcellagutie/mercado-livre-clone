@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import api from '../../services/api';
 import ErrorAlert from '../../components/ErrorAlert';
 import Loading from '../../components/Loading';
