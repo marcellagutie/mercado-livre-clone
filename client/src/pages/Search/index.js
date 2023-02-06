@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Wrapper } from '../../styles/wrapper';
-import Navigation from '../../components/Navigation';
+import Breadcrumb from '../../components/Breadcrumb';
 
 export default function Search() {
    return (
       <Wrapper>
-         <Navigation categories={['Home']} />
+         <Breadcrumb categories={['Home']} />
       </Wrapper>
    );
 }

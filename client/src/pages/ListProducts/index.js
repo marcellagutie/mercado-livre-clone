@@ -5,7 +5,7 @@ import shipping from '../../assets/ic_shipping@2x.png.png';
 import ErrorAlert from '../../components/ErrorAlert';
 import Loading from '../../components/Loading';
 import { Wrapper } from '../../styles/wrapper';
-import Navigation from '../../components/Navigation';
+import Breadcrumb from '../../components/Breadcrumb';
 import api from '../../services/api';
 
 import { Container, Product, Description, Pagination } from './styles';
@@ -71,7 +71,7 @@ export default function ListProducts() {
 
    return (
       <Wrapper>
-        <Navigation categories={["Busca"]} />
+        <Breadcrumb categories={["Busca"]} />
         <Container>
           {failure.status ? (
             showError()

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import api from '../../services/api';
 import ErrorAlert from '../../components/ErrorAlert';
 import Loading from '../../components/Loading';
-import Navigation from '../../components/Navigation';
+import Breadcrumb from '../../components/Breadcrumb';
 import { Wrapper } from '../../styles/wrapper';
 import { Container, Detail, Buy, Price } from './styles';
 
@@ -68,7 +68,7 @@ const DetailProduct = () => {
 
   return (
     <Wrapper>
-      <Navigation categories={rootCategories} />
+      <Breadcrumb categories={rootCategories} />
       <Container>
         {failure.status ? showError() : isLoading ? showLoading() : showProduct(product)}
       </Container>
