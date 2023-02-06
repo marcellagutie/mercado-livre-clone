@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there are no items 1`] = `
+Array [
+  <div
+    className="sc-bcXHqe BlkrH"
+  >
+    <nav>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Search"
+          src="Logo_ML.png"
+        />
+      </a>
+      <form
+        onSubmit={[Function]}
+      >
+        <div>
+          <input
+            onChange={[Function]}
+            placeholder="Buscar..."
+            type="text"
+            value=""
+          />
+          <button
+            type="submit"
+          >
+            <img
+              alt="Search"
+              src="ic_Search.png"
+            />
+          </button>
+        </div>
+      </form>
+    </nav>
+  </div>,
+  <div
+    className="sc-eDvSVe eCccop"
+  >
+    <div
+      className="sc-hLBbgP jebhNb"
+    >
+      <span>
+        <a
+          href="/"
+        />
+      </span>
+    </div>
+  </div>,
+]
+`;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import shipping from '../../assets/ic_shipping@2x.png.png';
 import ErrorAlert from '../../components/ErrorAlert';
@@ -15,7 +15,7 @@ export default function ListProducts() {
    const [isloading, setIsLoading] = useState(true);
    const [failure, setFailure] = useState({ status: false, message: '' });
    const [page, setPage] = useState(0);
-   const URL = new URLSearchParams(useLocation().search).get('search');
+   const URL = new URLSearchParams(window.location.search).get('search');
    const ITEMS_PER_PAGE = 4;
 
    useEffect(() => {

@@ -11,7 +11,7 @@ const DetailProduct = () => {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [failure, setFailure] = useState({ status: false, message: '' });
-  const url = useLocation().pathname;
+  const url = window.location.pathname;
   const id = url.split('/').pop();
 
   useEffect(() => {

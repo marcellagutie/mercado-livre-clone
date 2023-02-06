@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly the empty page 1`] = `
+<div
+  className="sc-bcXHqe yTffH"
+>
+  <div
+    className="sc-gswNZR eYnnWB"
+  >
+    <span>
+      <a
+        href="/"
+      />
+    </span>
+  </div>
+</div>
+`;
