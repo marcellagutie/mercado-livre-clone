@@ -1,4 +1,4 @@
-# Olá! Bem-vinde ao meu clone do MELI.
+# Oi! Bem-vindx ao meu clone do MELI.✨
 
 ## Como rodar o projeto?
 
@@ -33,5 +33,8 @@ Para rodar os testes.
   - Express
   - Node
   
+ Caso queira me conhecer um pouco mais:
+https://www.linkedin.com/company/woman-s-code/
+https://www.linkedin.com/in/marcella-gutierrez/
   
   Made with ♡
